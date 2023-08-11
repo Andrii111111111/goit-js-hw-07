@@ -18,31 +18,32 @@ function writeMarkup(arr) {
 </li> `).join('')
 }
 
-//  list.innerHTML = writeMarkup(galleryItems)
 
- 
+
 list.insertAdjacentHTML("afterbegin", writeMarkup(galleryItems))
-const links = document.querySelector('.gallery__link')
-//  links.style.pointerEvents = "none";
-const li = document.querySelector('.gallery__item')
+
 
 list.addEventListener("click", getBigImg)
 function getBigImg(evt) {
-    // if (evt.target === evt.currentTarget)
-    //     return
-    // console.log(evt.target)
-    // if (!evt.target.classList.contains('gallery__item')) {
-    //     return;
-    // }
-    // console.log(getBigImg())
-    const href = evt.target.src
-    
-    const instance = basicLightbox.create(`
-    <img src="${href}" width="800" height="600">
+
+  evt.preventDefault()
+
+   if (!evt.target.classList.contains('gallery__image') ) {
+     return;
+   }
+
+  const instance = basicLightbox.create(`
+   <img src="${evt.target.dataset.source}" >
 `)
 
-    instance.show()
-    console.log(instance)
-}
+  instance.show()
+  
 
-//  console.log(getBigImg())
+list.addEventListener("keydown", closeImg)
+  function closeImg(evt) {
+  if (evt.code === 'Escape') {
+    return instance.close()
+  }
+
+}
+}
