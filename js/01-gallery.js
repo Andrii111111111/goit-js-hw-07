@@ -3,7 +3,6 @@ import { galleryItems } from './gallery-items.js';
 
 const list = document.querySelector(".gallery")
 
-const links = document.querySelector(".gallery__item")
 
 function writeMarkup(arr) {
    return arr.map(({ preview, original, description }) =>
@@ -19,8 +18,31 @@ function writeMarkup(arr) {
 </li> `).join('')
 }
 
- list.innerHTML = writeMarkup(galleryItems)
+//  list.innerHTML = writeMarkup(galleryItems)
 
+ 
+list.insertAdjacentHTML("afterbegin", writeMarkup(galleryItems))
+const links = document.querySelector('.gallery__link')
+//  links.style.pointerEvents = "none";
+const li = document.querySelector('.gallery__item')
 
-console.log(list)
-console.log(links)
+list.addEventListener("click", getBigImg)
+function getBigImg(evt) {
+    // if (evt.target === evt.currentTarget)
+    //     return
+    // console.log(evt.target)
+    // if (!evt.target.classList.contains('gallery__item')) {
+    //     return;
+    // }
+    // console.log(getBigImg())
+    const href = evt.target.src
+    
+    const instance = basicLightbox.create(`
+    <img src="${href}" width="800" height="600">
+`)
+
+    instance.show()
+    console.log(instance)
+}
+
+//  console.log(getBigImg())
