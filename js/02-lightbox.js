@@ -17,22 +17,14 @@ function writeMarkup(arr) {
 </li> `).join('')
 }
 
-
 list.insertAdjacentHTML("afterbegin", writeMarkup(galleryItems))
 
-list.addEventListener("click", getBigImg)
-function getBigImg(evt) {
 
-  evt.preventDefault()
-console.log(evt.target.alt)
-   if (!evt.target.classList.contains('gallery__image') ) {
-     return;
-   }
-    var lightbox = new SimpleLightbox('.gallery a', { 
+    const lightbox = new SimpleLightbox('.gallery a', { 
         captionsData: 'alt',
         captionPosition: 'bottom',
         captionDelay: 250,
   });
   
-}
+
 

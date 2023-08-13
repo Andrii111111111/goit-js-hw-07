@@ -42,7 +42,8 @@ function getBigImg(evt) {
 list.addEventListener("keydown", closeImg)
   function closeImg(evt) {
   if (evt.code === 'Escape') {
-    return instance.close()
+    instance.close()
+    list.removeEventListener("keydown", closeImg)
   }
 
 }
